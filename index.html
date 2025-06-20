@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <title>Weather-based health predictor</title>
+</head>
+<body>
+    <div class="weather-app">
+        <div class="container">
+            <div>
+              <h1 class="temp">31&#176</h1>
+              <div class="City-time">
+                <h1 class="name">Chennai</h1>
+                <small>
+                    <span class="time">08:12</span>
+                    -
+                    <span class="date">Wednesday Oct 2</span>
+                </small>
+              </div>
+              <div class="weather">
+                <img
+                  src="./icons/day/113.png"
+                  class="icon"
+                  alt="icon"
+                  width="50"
+                  height="50 " 
+                />
+                <span class="condition">Cloudy</span>
+              </div>
+            </div>
+            <div class="weather-details">
+              <span class="cloud">Cloudy: 0%</span>
+              <span class="humidity">Humidity: 62%</span>
+              <span class="wind">Wind: 33.5 km/h</span>  
+            </div>
+          </div>
+          <div class="panel">
+            <form id="locationinput">
+              <input
+              type="text"
+              class="search"
+              placeholder="Search Location"
+              />
+              <button type="submit" class="submit">
+                <i class=" fas fa-search"></i>
+              </button>
+            </form>
+            
+            <ul class="cities">
+                <li class="city">Chennai</li>
+                <li class="city">Mumbai</li>
+                <li class="city">Bangalore</li>
+                <li class="city">Hyderabad</li>
+            </ul>
+
+            <div class="health-issues">
+                <h4>Health Risks</h4>
+                <ul class="issues"></ul>
+            </div>
+          </div>
+    </div>
+
+    <script src="script.js"></script>
+  
+    
+</body>
+</html>

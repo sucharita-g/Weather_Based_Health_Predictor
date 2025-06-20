@@ -1,0 +1,215 @@
+body{
+    margin: 0;
+    font-family: 'Rubik',sans-serif;
+    background:#111; 
+}
+
+* {
+    box-sizing: border-box;
+}
+
+h1 {
+    font-weight: 400;
+}
+
+.weather-app {
+    min-width: 300px;
+    min-height: 100vh;
+    background-image: url('/project-1/clear.jpg');
+    background-repeat: no-repeat;
+    background-position: center ;
+    background-size: cover;
+    color: #fff ;
+    position: relative;
+    transition: 500ms;
+    opacity: 1;
+    position: relative;
+    z-index: 1;
+}
+
+.weather-app::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.3);
+    z-index: 0;
+}
+
+.container {
+    position: absolute;
+    bottom: 0;  /* Aligns the content to the bottom of the page */
+    left: 0;    /* Aligns the content to the left of the page */
+    width: 100%;
+    padding: 2em 3em 4em 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Adjust depending on how you want the content to be spaced vertically */
+    align-items: flex-start;     /* Align content to the left */
+}
+    
+.container > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.weather-details {
+    display: flex; /* Use flexbox for horizontal alignment */
+    justify-content: space-between; /* Space between items */
+    margin-top: 30px; /* Add some spacing above the details */
+    font-size: 1.2em; /* Increase font size for better visibility */
+}
+
+.weather-details span {
+    margin-right: 15px; /* Add spacing between each detail */
+}
+
+.city-time,
+.temp,
+.weather {
+    margin: 0 1em;
+}
+
+.city-time h1 {
+    margin: 0;
+    margin-bottom: 0.2em;
+    font-size: 3em;
+}
+
+.temp {
+    font-size: 7em;
+    margin: 0;
+}
+
+.weather img {
+    display: block;
+    margin: 0.5em 0;
+}
+
+.panel {
+    position: absolute;
+    width: 40%;
+    height: 100%;
+    top: 0;
+    right: 0;
+    background: rgba(110,110,110,0.25);
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.18);
+    z-index: 1;
+    padding: 3em 2em;
+    overflow-y: auto;
+}
+
+.panel form {
+    margin-bottom: 3em;
+}
+
+.submit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 1.5em;
+    margin: 0;
+    border: none;
+    outline: none;
+    background: #ff6a1a;
+    color: #fff;
+    font-size: 1.2em;
+    transition: 0.4s;
+}
+
+.submit:hover {
+    background: #fff;
+    color: #000; 
+}
+
+.search {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #fff;
+    padding: 0 1em 0.5 0;
+    width: 80%;
+    color: #fff;
+    font-size: 1.1em;
+}  
+
+.search:focus {
+    outline: none;
+}
+
+.search::placeholder {
+    color: #fff;
+}
+
+.panel ul{
+   padding :0 0 1em 0;
+   margin: 2em 0;
+   border-bottom: 1px solid #fff;
+}  
+
+.panel ul li{
+    color: #fff;
+    margin: 2.5em 0;
+}
+
+.city {
+    display: block;
+    cursor: pointer;
+}
+
+.city:hover {
+    color: #fff;
+}
+
+.health-issues {
+    margin-top: 30px;
+}
+
+.health-issues h4 {
+    font-size: 20px;
+}
+
+.health-issues ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 40;
+}
+
+.health-issues ul li {
+    font-size: 1.2em;
+    color: #fff;
+    margin: 30px 0;
+    margin-bottom: 30px;
+}
+
+.issues {
+    font-size: 16px;
+    color: #fff;
+    padding: 20px;
+    padding-left: 0%;
+}
+
+@media screen and (max-width: 800px) {
+    .panel, .container {
+        position: relative;
+        width: 100%;
+        top: initial;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    html {
+        font-size: 12px;
+    }  
+}
+
+@media screen and (max-height: 300px) {
+    .weather-app {
+        min-height: 40em;
+    }
+    
+}
