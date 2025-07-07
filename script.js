@@ -1,26 +1,3 @@
-const healthWeatherData = [
-    { Weather: "Sunny", Condition: 30, Humidity: 40, "Health Issue": "Dehydration, Heatstroke" },
-    { Weather: "Partly cloudy", Condition: 28, Humidity: 50, "Health Issue": "Allergies" },
-    { Weather: "Cloudy", Condition: 25, Humidity: 60, "Health Issue": "Fatigue" },
-    { Weather: "Overcast", Condition: 20, Humidity: 70, "Health Issue": "Low energy, Depression" },
-    { Weather: "Mist", Condition: 18, Humidity: 80, "Health Issue": "Respiratory issues" },
-    { Weather: "Patchy rain possible", Condition: 22, Humidity: 75, "Health Issue": "Common cold" },
-    { Weather: "Patchy snow possible", Condition: 0, Humidity: 65, "Health Issue": "Frostbite" },
-    { Weather: "Thundery outbreaks", Condition: 24, Humidity: 78, "Health Issue": "Anxiety, Migraine" },
-    { Weather: "Fog", Condition: 15, Humidity: 85, "Health Issue": "Asthma, Respiratory issues" },
-    { Weather: "Freezing fog", Condition: -1, Humidity: 90, "Health Issue": "Hypothermia" },
-    { Weather: "Light drizzle", Condition: 19, Humidity: 85, "Health Issue": "Common cold" },
-    { Weather: "Moderate rain", Condition: 21, Humidity: 88, "Health Issue": "Flu, Joint pain" },
-    { Weather: "Heavy rain", Condition: 20, Humidity: 95, "Health Issue": "Flu, Joint pain" },
-    { Weather: "Light snow", Condition: -5, Humidity: 60, "Health Issue": "Hypothermia, Frostbite" },
-    { Weather: "Blizzard", Condition: -10, Humidity: 55, "Health Issue": "Hypothermia, Frostbite" },
-    { Weather: "Ice pellets", Condition: -8, Humidity: 65, "Health Issue": "Hypothermia" },
-    { Weather: "Light rain shower", Condition: 23, Humidity: 85, "Health Issue": "Flu" },
-    { Weather: "Torrential rain shower", Condition: 18, Humidity: 92, "Health Issue": "Flu, Joint pain" },
-    { Weather: "Patchy light rain", Condition: 20, Humidity: 80, "Health Issue": "Sinus infection" },
-    { Weather: "Moderate or heavy sleet", Condition: 1, Humidity: 70, "Health Issue": "Hypothermia, Frostbite" }
-];
-
 const app = document.querySelector('.weather-app');
 const temp = document.querySelector('.temp');
 const dateOutput = document.querySelector('.date');
@@ -35,7 +12,8 @@ const form = document.getElementById('locationinput');
 const search = document.querySelector('.search');
 const btn = document.querySelector('.submit');
 const cities = document.querySelectorAll('.city');
-const healthOutput = document.querySelector('.issues'); // Add this line
+const healthOutput = document.querySelector('.issues');// Add this line
+
 
 // Default city when the page loads
 let cityInput = "Chennai";
@@ -52,8 +30,6 @@ cities.forEach((city) => {
         app.style.opacity = "0";
     });
 });
-
-// Adding submit event to the form
 form.addEventListener('submit', (e) => {
     if (search.value.length === 0) {
         alert('Please type in a city name');
@@ -74,7 +50,7 @@ function dayOfTheWeek(day, month, year) {
 
 function fetchWeatherData() {
     // Fetch the data and dynamically add the city name with template literals
-    fetch(`http://api.weatherapi.com/v1/current.json?key=7cf9b568b7fb48128f8130655242711&q=${cityInput}`)
+    fetch(`https://api.weatherapi.com/v1/current.json?key=a1d96f5333274c21ad6122553240610&q=${cityInput}`)
         .then(response => response.json())
         .then(data => {
             // Console log the data to see what is available
@@ -106,29 +82,32 @@ function fetchWeatherData() {
             humidityOutput.innerHTML = "Humidity:" + data.current.humidity + "%";
             windOutput.innerHTML = "Wind:" + data.current.wind_kph + "km/h";
 
+            fetchHealthDataFromJSON(data.current);
+
+
             // Determine time of the day
             let timeOfDay = data.current.is_day ? "day" : "night";
             const code = data.current.condition.code;
 
             // Change the background image and button color based on weather conditions
             if (code === 1000) {
-                app.style.backgroundImage = `url(./icons/${timeOfDay}/clear.jpg)`;
+                app.style.backgroundImage = `url(./images/${timeOfDay}/clear.png)`;
                 btn.style.background = timeOfDay === "night" ? "#181e27" : "#e5ba92";
             } else if (
                 [1003, 1006, 1009, 1030, 1069, 1087, 1135, 1273, 1276, 1279, 1282].includes(code)
             ) {
-                app.style.backgroundImage = `url(./icons/${timeOfDay}/cloudy.jpg)`;
+                app.style.backgroundImage = `url(./images/${timeOfDay}/cloudy.png)`;
                 btn.style.background = "#fa6d1b";
             } else if (code >= 1065 && code <= 1252) {
-                app.style.backgroundImage = `url(./icons/${timeOfDay}/rainy.jpg)`;
+                app.style.backgroundImage = `url(./images/${timeOfDay}/rainy.png)`;
                 btn.style.background = timeOfDay === "night" ? "#325c80" : "#647d75";
             } else {
-                app.style.backgroundImage = `url(./icons/${timeOfDay}/snowy.jpg)`;
+                app.style.backgroundImage = `url(./images/${timeOfDay}/snowy.png)`;
                 btn.style.background = timeOfDay === "night" ? "#1b1b1b" : "#4d72aa";
             }
 
             //Fetch health issues data and compare it with the weather condition
-            fetchHealthData(data.current.condition.text);
+    
 
             app.style.opacity = "1";
         })
@@ -138,44 +117,47 @@ function fetchWeatherData() {
         });
 }
 
-function fetchHealthData(weatherCondition) {
-    console.log('Weather Condition from API:', weatherCondition); // Debug input condition
-
-    // Optional: Map condition to a standard form
-    const weatherMapping = {
-        'Clear': 'Sunny',
-        'Patchy rain possible': 'Light drizzle',
-        'Thundery outbreaks possible': 'Thundery outbreaks',
-        // Add more mappings as needed
-    };
-    const standardizedCondition = weatherMapping[weatherCondition] || weatherCondition;
-    console.log('Standardized Condition:', standardizedCondition); // Log mapped condition
-
-    // Search for health issue directly in the local array
-    let matchedIssue = "No health issues reported for this weather condition";
-    healthWeatherData.forEach(entry => {
-        if (
-            entry.Weather.toLowerCase().trim() === standardizedCondition.toLowerCase().trim()
-        ) {
-            matchedIssue = entry['Health Issue'];
-        }
-    });
-
-    console.log('Matched Health Issue:', matchedIssue); // Debug match result
-    healthOutput.innerHTML = matchedIssue;
-    if (matchedIssue !== "No health issues reported for this weather condition") {
-        // Example phone number, replace with a dynamic number if needed
-        const userPhoneNumber = '+1234567890'; // Replace with the actual phone number
-        const message = `Weather alert: ${standardizedCondition} - Health issues: ${matchedIssue}`;
-        
-        // Call the server-side sendSms function to send the SMS
-        fetch('/send-sms', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ phoneNumber: userPhoneNumber, message: message })
-        })
+function fetchHealthDataFromJSON(currentData) {
+    fetch('./health_weather_data.json')
         .then(response => response.json())
-        .then(data => console.log('SMS sent:', data))
-        .catch(error => console.error('Error sending SMS:', error));
-    }
+        .then(healthData => {
+            const humidity = currentData.humidity;
+            const temp = currentData.temp_c;
+            const wind = currentData.wind_kph;
+            const conditionText = currentData.condition.text.toLowerCase();
+
+            let matchedRisks = [];
+
+            healthData.forEach(entry => {
+                const cond = entry.weather.condition;
+                const val = entry.weather.value;
+
+                if (
+                    (cond === "high_humidity" && humidity > 80) ||
+                    (cond === "extreme_cold" && temp < 0) ||
+                    (cond === "high_temperature" && temp > 30) ||
+                    (cond === "extreme_heat" && temp > 40) ||
+                    (cond === "windy" && wind > 30) ||
+                    (cond === "rainy" && conditionText.includes("rain")) ||
+                    (cond === "fog" && conditionText.includes("fog")) ||
+                    (cond === "snowfall" && conditionText.includes("snow")) ||
+                    (cond === "thunderstorms" && conditionText.includes("thunder")) ||
+                    (cond === "low_air_quality" && conditionText.includes("smoke") || conditionText.includes("haze")) ||
+                    (cond === "uv_index" && currentData.uv > 8) ||
+                    (cond === "high_pollen" && conditionText.includes("pollen"))
+                ) {
+                    matchedRisks.push(...entry.health_risks);
+                }
+            });
+
+            if (matchedRisks.length > 0) {
+                healthOutput.innerHTML = matchedRisks.map(risk => `<li><strong>${risk.name}:</strong> ${risk.tips}</li>`).join('');
+            } else {
+                healthOutput.innerHTML = "<li>No specific health risks reported for current weather.</li>";
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching JSON health data:', error);
+            healthOutput.innerHTML = "<li>Unable to fetch health data.</li>";
+        });
 }
