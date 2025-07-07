@@ -1,0 +1,218 @@
+[
+  {
+    "weather": {
+      "condition": "high_humidity",
+      "value": "above 80%"
+    },
+    "health_risks": [
+      {
+        "name": "Asthma",
+        "tips": "Avoid outdoor exercise, carry inhaler"
+      },
+      {
+        "name": "Dehydration",
+        "tips": "Drink plenty of fluids, avoid strenuous activity"
+      }
+    ]
+  },
+  {
+    "weather": {
+      "condition": "extreme_cold",
+      "value": "below 0°C"
+    },
+    "health_risks": [
+      {
+        "name": "Hypothermia",
+        "tips": "Dress warmly, limit time outside"
+      },
+      {
+        "name": "Frostbite",
+        "tips": "Wear gloves and warm socks, cover extremities"
+      }
+    ]
+  },
+  {
+    "weather": {
+      "condition": "high_pollen",
+      "value": "above 100 grains/m³"
+    },
+    "health_risks": [
+      {
+        "name": "Respiratory Issues",
+        "tips": "Use air purifier, wear mask outdoors"
+      },
+      {
+        "name": "Allergies",
+        "tips": "Stay indoors on high pollen days, take antihistamines"
+      }
+    ]
+  },
+  {
+    "weather": {
+      "condition": "high_temperature",
+      "value": "above 30°C"
+    },
+    "health_risks": [
+      {
+        "name": "Heatstroke",
+        "tips": "Stay indoors during peak heat, use fans or AC"
+      },
+      {
+        "name": "Dehydration",
+        "tips": "Drink plenty of fluids, avoid outdoor activities at noon"
+      }
+    ]
+  },
+  {
+    "weather": {
+      "condition": "rainy",
+      "value": "heavy rainfall"
+    },
+    "health_risks": [
+      {
+        "name": "Flood-related Injuries",
+        "tips": "Avoid floodwater, seek higher ground"
+      },
+      {
+        "name": "Infections",
+        "tips": "Keep wounds clean, wash hands frequently"
+      }
+    ]
+  },
+  {
+    "weather": {
+      "condition": "extreme_heat",
+      "value": "above 40°C"
+    },
+    "health_risks": [
+      {
+        "name": "Heatstroke",
+        "tips": "Stay indoors during peak heat, rest in shade"
+      },
+      {
+        "name": "Exhaustion",
+        "tips": "Take frequent breaks, stay hydrated"
+      }
+    ]
+  },
+  {
+    "weather": {
+      "condition": "fog",
+      "value": "visibility < 1 km"
+    },
+    "health_risks": [
+      {
+        "name": "Road Accidents",
+        "tips": "Drive slowly, use fog lights"
+      },
+      {
+        "name": "Asthma",
+        "tips": "Use inhaler if needed, stay in a well-ventilated area"
+      },
+      {
+        "name": "Bronchitis",
+        "tips": "Wear a mask outdoors, avoid smoky environments"
+      }
+    ]
+  },
+  {
+    "weather": {
+      "condition": "low_air_quality",
+      "value": "AQI > 150"
+    },
+    "health_risks": [
+      {
+        "name": "Respiratory Conditions",
+        "tips": "Wear air-filter mask, limit outdoor time"
+      },
+      {
+        "name": "Heart Attacks",
+        "tips": "Avoid vigorous activity outdoors"
+      },
+      {
+        "name": "Irritation (eyes/nose/throat)",
+        "tips": "Use saline drops, stay hydrated"
+      }
+    ]
+  },
+  {
+    "weather": {
+      "condition": "windy",
+      "value": "wind speed > 30 km/h"
+    },
+    "health_risks": [
+      {
+        "name": "Dust Inhalation",
+        "tips": "Wear dust mask, keep windows closed"
+      },
+      {
+        "name": "Eye Infections",
+        "tips": "Avoid touching eyes, wear protective eyewear"
+      },
+      {
+        "name": "Skin Dryness",
+        "tips": "Use moisturizer, drink plenty of water"
+      }
+    ]
+  },
+  {
+    "weather": {
+      "condition": "snowfall",
+      "value": "moderate to heavy"
+    },
+    "health_risks": [
+      {
+        "name": "Slips and Fractures",
+        "tips": "Wear sturdy shoes, walk carefully"
+      },
+      {
+        "name": "Frostbite",
+        "tips": "Keep extremities covered and warm"
+      },
+      {
+        "name": "Heart Strain",
+        "tips": "Limit heavy exertion outdoors"
+      }
+    ]
+  },
+  {
+    "weather": {
+      "condition": "thunderstorms",
+      "value": "visible lightning or thunder warnings"
+    },
+    "health_risks": [
+      {
+        "name": "Lightning Strikes",
+        "tips": "Seek shelter indoors, avoid open fields"
+      },
+      {
+        "name": "Power Outage Effects",
+        "tips": "Keep flashlight and batteries handy"
+      },
+      {
+        "name": "PTSD/Anxiety",
+        "tips": "Practice deep breathing, stay with supportive company"
+      }
+    ]
+  },
+  {
+    "weather": {
+      "condition": "uv_index",
+      "value": "UV Index > 8"
+    },
+    "health_risks": [
+      {
+        "name": "Sunburn",
+        "tips": "Apply broad-spectrum sunscreen, wear a hat"
+      },
+      {
+        "name": "Skin Cancer",
+        "tips": "Limit sun exposure during peak hours"
+      },
+      {
+        "name": "Eye Damage",
+        "tips": "Wear UV-blocking sunglasses"
+      }
+    ]
+  }
+]
